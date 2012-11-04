@@ -35,6 +35,7 @@ function(_StoreMixin, declare, lang, Deferred, on, query, string, has, put, i18n
 		i18nPagination: i18n,
 		
 		showFooter: true,
+		positionAt : "footer", // temp - default, next option is header
 		_currentPage: 1,
 		_total: 0,
 		
