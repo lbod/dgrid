@@ -42,10 +42,25 @@ function(_StoreMixin, declare, lang, Deferred, on, query, string, has, put, i18n
 			this.inherited(arguments);
 			
 			// add pagination to footer
+			//debugger;
+			var placeatnode = this.footerNode, gridNode; 
+			
+			if (this.positionAt==="header"){
+			    placeatnode=this.headerNode;
+			    gridNode = query("#grid-header", this.domNode)[0];
+			    
+			};
+			//console.log(placeatnode);
+			
 			var grid = this,
-				paginationNode = this.paginationNode =
-					put(this.footerNode, "div.dgrid-pagination"),
-				statusNode = this.paginationStatusNode =
+				paginationNode = this.paginationNode;
+				if (this.positionAt==="header"){
+					paginationNode= put(gridNode, "- div.dgrid-pagination");
+				} else{
+				    paginationNode=put(placeatnode, "div.dgrid-pagination");
+				}
+					
+				var statusNode = this.paginationStatusNode =
 					put(paginationNode, "div.dgrid-status"),
 				pageSizeOptions = this.pageSizeOptions,
 				i18n = this.i18nPagination,

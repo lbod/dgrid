@@ -92,7 +92,7 @@
 					
 					function createGrid(args){
 						window.grid = new CustomGrid(
-							lang.mixin({ store: testAsyncStore, columns: getColumns() }, args),
+							lang.mixin({ store: testAsyncStore, columns: getColumns(), positionAt:"header" }, args),
 							"grid");
 					}
 					createGrid();
