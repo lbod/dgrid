@@ -35,37 +35,34 @@ function(_StoreMixin, declare, lang, Deferred, on, query, string, has, put, i18n
 		i18nPagination: i18n,
 		
 		showFooter: true,
-		positionAt : "footer", // temp - default, next option is header
+		// positionAt: String
+		//		Allow for positioning in the header, footer is the default
+		//		Current options footer|header
+		positionAt : "footer",
 		_currentPage: 1,
 		_total: 0,
 		
 		buildRendering: function(){
 			this.inherited(arguments);
-			
-			// add pagination to footer
-			//debugger;
-			var placeatnode = this.footerNode, gridNode; 
+			// add pagination to footer|header
+			var placeatnode = this.footerNode, gridNode, grid = this,
+				paginationNode = this.paginationNode; 
 			
 			if (this.positionAt==="header"){
 			    placeatnode=this.headerNode;
 			    gridNode = query("#grid-header", this.domNode)[0];
-			    
 			};
-			//console.log(placeatnode);
-			
-			var grid = this,
-				paginationNode = this.paginationNode;
-				if (this.positionAt==="header"){
-					paginationNode= put(gridNode, "- div.dgrid-pagination");
-				} else{
-				    paginationNode=put(placeatnode, "div.dgrid-pagination");
-				}
-					
-				var statusNode = this.paginationStatusNode =
-					put(paginationNode, "div.dgrid-status"),
-				pageSizeOptions = this.pageSizeOptions,
-				i18n = this.i18nPagination,
-				navigationNode, node;
+			if (this.positionAt==="header"){
+				paginationNode= put(gridNode, "- div.dgrid-pagination");
+			} else{
+			    paginationNode=put(placeatnode, "div.dgrid-pagination");
+			}
+				
+			var statusNode = this.paginationStatusNode =
+				put(paginationNode, "div.dgrid-status"),
+			pageSizeOptions = this.pageSizeOptions,
+			i18n = this.i18nPagination,
+			navigationNode, node;
 			
 			statusNode.tabIndex = 0;
 			
